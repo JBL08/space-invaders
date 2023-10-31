@@ -40,10 +40,10 @@ body {
 .main {
   width: 800px;
   height: 600px;
-  background-color: black; /* Plain black background instead of prev animated one */
+  background-color: black; 
   box-shadow: 0 2px 10px rgba(5, 5, 5, 0.2);
   position: relative;
-  z-index: -2;
+  margin: 0 auto;          /* Center the game area */
 }
 
 /*  centering the game over and win boxes */
@@ -58,12 +58,20 @@ body {
   z-index: 1;  /* Making sure the game elements are above the background */
 }
 
-
 header {
   text-align: center;
   background: rgb(59, 3, 49);
-  color: #767171;
-  padding: 10px;
+  color: white;
+  padding: 20px 10px;
+  font-family: 'Press Start 2P', cursive;
+  text-transform: uppercase;
+  letter-spacing: 5px;
+  text-shadow: 3px 3px rgba(0, 0, 0, 0.2);
+  border: 5px solid white;
+  border-radius: 10px;
+  width: 800px;            /* Same width as .main */
+  margin: 0 auto;          /* Center the header */
+  box-shadow: 0 2px 10px rgba(5, 5, 5, 0.2);
 }
 
 footer {
