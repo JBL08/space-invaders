@@ -21,8 +21,8 @@ body {
 
 .scoreboard {
   position: absolute;
-  top: 10px;
-  right: 10px;
+  top: 90px;
+  right: 270px;
   background: rgba(0,0,0,0.5);
   padding: 10px;
   border-radius: 10px;
@@ -102,7 +102,7 @@ footer {
   margin-left: -2.5px;
   height: 25px;
   /* default z-index is 0*/
-  z-index: -1;
+  z-index: 2; /* laser is above the enemy*/
 }
 
 .main .enemy{
@@ -113,7 +113,7 @@ footer {
   position: absolute;
   margin-left: -2.5px;
   height: 20px;
-  z-index: -1;
+  z-index: 2;
 }
 
  .lose {
