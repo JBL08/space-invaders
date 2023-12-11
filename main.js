@@ -27,6 +27,7 @@ const STATE = {
   paused: false,
   continue: false
 }
+
 // 
 function setPosition($element, x, y) {
   $element.style.transform = `translate(${x}px, ${y}px)`;
@@ -219,7 +220,7 @@ function deleteLaser(lasers, laser, $laser){
   $container.removeChild($laser);
 }
 
-// Key Presses adding a P keyword to pause 
+// Key Presses adding a P keyword to  
 function KeyPress(event) {
     if (event.keyCode === KEY_RIGHT) {
       STATE.move_right = true;
@@ -242,10 +243,30 @@ function KeyRelease(event) {
       STATE.shoot = false;
     }
   }
-  
+
+
+//countdown timer
+const TIMER_DURATION = 60;
+let timer = TIMER_DURATION; 
+
+function updateTimer() {
+  if (!STATE.paused && !STATE.gameOver && timer > 0) {
+    timer -= 0.02; // Decrease the timer by 0.02 seconds (adjust as needed)
+    document.getElementById('countdown').textContent = timer.toFixed(0);
+  }
+
+  if (timer <= 0) {
+    STATE.gameOver = true; 
+  }
+}
+
+
 
 // Main Update Function
 function update(){
+
+  
+
     updatePlayer();
     updateEnemies($container);
     updateLaser($container);
@@ -265,6 +286,7 @@ function update(){
   
     updateScoreboard();
     checkGameOver();
+    updateTimer(); 
     window.requestAnimationFrame(update);
   }
   
@@ -278,6 +300,9 @@ function createEnemies($container) {
     createEnemy($container, i*80, 180);
   }
 }
+
+
+
 
 function checkGameOver() {
     if (STATE.gameOver) {
@@ -305,15 +330,18 @@ function checkGameOver() {
 }
 
 
+
 // Initialize the Game
 const $container = document.querySelector(".main");
 createPlayer($container);
 createEnemies($container);
 
 // Key Press Event Listener
+document.getElementById('countdown').textContent = TIMER_DURATION;
 window.addEventListener("keydown", KeyPress);
 window.addEventListener("keyup", KeyRelease);
 update();
+
 document.querySelector('.pause-btn').addEventListener('click', function() {
     STATE.paused = !STATE.paused;
     if (STATE.paused) {
