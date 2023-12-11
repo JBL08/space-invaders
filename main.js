@@ -125,6 +125,10 @@ function createLaser($container, x, y){
   const laser = {x, y, $laser};
   STATE.lasers.push(laser);
   setPosition($laser, x, y);
+
+  // laser sound effect
+  const laserSound = document.getElementById("laserSound");
+  laserSound.play();
 }
 
 function updateLaser($container){
@@ -147,7 +151,9 @@ function updateLaser($container){
         enemies.splice(index,1);
         $container.removeChild(enemy.$enemy);
         STATE.score += 10;
-
+        // explosion sound effect plays
+        const explosion = document.getElementById("explosion");
+        explosion.play();
       }
     }
   }
@@ -167,7 +173,6 @@ function gameLoop() {
         lastTime = currentTime;
         console.log(fps);  // 
     }
-    
     requestAnimationFrame(gameLoop);
 }
 
@@ -264,25 +269,28 @@ function updateTimer() {
 
 // Main Update Function
 function update(){
-
-  
-
     updatePlayer();
     updateEnemies($container);
     updateLaser($container);
     updateEnemyLaser($container);
   
-    if (STATE.paused) return;
-    
-    if (STATE.gameOver) {
+    if (STATE.paused) {
+      return;
+    } if (STATE.gameOver) {
       document.querySelector(".lose").style.display = "block";
+      // game over music
+      gameOver.play();
+      soundtrack.pause();
+      soundtrack.currentTime = 0;
+      return;
+    } if (STATE.enemies.length == 0) {
+      document.querySelector(".win").style.display = "block";
+      // win music
+      levelClear.play();
+      soundtrack.pause();
+      soundtrack.currentTime = 0;
       return;
     } 
-    
-    if (STATE.enemies.length == 0) {
-      document.querySelector(".win").style.display = "block";
-      return;
-    }
   
     updateScoreboard();
     checkGameOver();
@@ -291,8 +299,6 @@ function update(){
   }
   
 
-
-
 function createEnemies($container) {
   for(var i = 0; i <= STATE.number_of_enemies/2; i++){
     createEnemy($container, i*80, 100);
@@ -300,9 +306,6 @@ function createEnemies($container) {
     createEnemy($container, i*80, 180);
   }
 }
-
-
-
 
 function checkGameOver() {
     if (STATE.gameOver) {
@@ -336,6 +339,10 @@ const $container = document.querySelector(".main");
 createPlayer($container);
 createEnemies($container);
 
+// play music
+const soundtrack = document.getElementById("soundtrack");
+soundtrack.play();
+
 // Key Press Event Listener
 document.getElementById('countdown').textContent = TIMER_DURATION;
 window.addEventListener("keydown", KeyPress);
@@ -346,6 +353,7 @@ document.querySelector('.pause-btn').addEventListener('click', function() {
     STATE.paused = !STATE.paused;
     if (STATE.paused) {
         document.querySelector('.continue-btn').style.display = 'block'; // Show the continue button when paused
+        soundtrack.pause();
     } else {
         document.querySelector('.continue-btn').style.display = 'none'; // Hide the continue button when resumed
     }
@@ -353,6 +361,7 @@ document.querySelector('.pause-btn').addEventListener('click', function() {
 
 document.querySelector('.continue-btn').addEventListener('click', function() {
     STATE.paused = false;
+    soundtrack.play();
     document.querySelector('.continue-btn').style.display = 'none'; // Hide the continue button when game is continued
     update(); // Manually call the update function to restart the game loop
 });

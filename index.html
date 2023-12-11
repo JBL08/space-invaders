@@ -14,6 +14,14 @@
     <div class="wrap">
         <header>Space Invaders</header>
         <div class="game-wrapper">
+            <!-- music and sound effects -->
+            <audio id="soundtrack" src="sound/soundtrack.mp3" loop></audio>
+            <audio id="levelClear" src="sound/levelClear.mp3"></audio>
+            <audio id="gameOver" src="sound/gameOver.mp3"></audio>
+            <audio id="laserSound" src="sound/laserSound.wav"></audio>
+            <audio id="explosion" src="sound/explosion.wav"></audio>
+            <!-- <audio id="enemyLaserSound" src="sound/enemyLaser.mp3"></audio> -->
+
             <div class="main"></div>
                 <div class="lose">
                     <h1>What A Loser</h1>
@@ -30,14 +38,14 @@
                         <div class="score">Score: 0</div>
                         <div class="lives">Lives: 3</div>
                         <div class="ufos">UFOs: 16</div>
-                        <button class="start-btn">Start Game</button>
+                        <!-- <button class="start-btn">Start Game</button> -->
                         <button class="pause-btn">Pause</button>
                         <button class="restart-btn" onclick="window.location.reload()">Restart</button>
                         <button class="continue-btn" style="display: none;">Continue</button>
                     </div>
                 </div>
         <script src="main.js"></script>
-        <footer></footer>
+        <!-- <footer></footer> -->
     </div>
 </body>
 </html>

@@ -21,16 +21,16 @@ body {
 
 .scoreboard {
   position: absolute;
-  top: 90px;
-  right: 270px;
+  top: 0;
+  right: 0;
   background: rgba(0,0,0,0.5);
-  padding: 10px;
+  padding: 1em;
   border-radius: 10px;
-  z-index: 1; /*  scoreboard is above the main game area */
+  z-index: 2; /*  scoreboard is above the main game area */
 }
 
 .scoreboard div, .scoreboard button {
-  margin: 5px;
+  margin: 0.2em;
 }
 
 .scoreboard button:hover {
@@ -44,6 +44,7 @@ body {
   box-shadow: 0 2px 10px rgba(5, 5, 5, 0.2);
   position: relative;
   margin: 0 auto;          /* Center the game area */
+  /* border: 10px white; */
 }
 
 /*  centering the game over and win boxes */
@@ -74,13 +75,13 @@ header {
   box-shadow: 0 2px 10px rgba(5, 5, 5, 0.2);
 }
 
-footer {
+/* footer {
   padding: 10px;
   text-align: center;
   font-size: 11px;
   background: black;
   color: white;
-}
+} */
 
 @keyframes scroll-background {
   from {
