@@ -51,8 +51,8 @@ body {
 .lose, .win {
   top: 50%;
   left: 50%;
-  transform: translate(-50%, -50%); 
-  
+  transform: translate(-50%, -90%); 
+  z-index: 2;
 }
 
 .main .laser, .main .enemy, .main .enemyLaser {

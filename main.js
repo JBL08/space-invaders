@@ -200,9 +200,13 @@ function updateEnemyLaser($container){
       const enemyLaser_rectangle = enemyLaser.$enemyLaser.getBoundingClientRect();
       const spaceship_rectangle = document.querySelector(".player").getBoundingClientRect();
       if(collideRect(spaceship_rectangle, enemyLaser_rectangle)){
+        const lifeDown = document.getElementById("lifeDown");
+        lifeDown.play();
         STATE.lives -= 1;
         deleteLaser(enemyLasers, enemyLaser, enemyLaser.$enemyLaser);
         if (STATE.lives <= 0) {
+          STATE.lives = 0;
+          console.log("Lives remaining (should be 0):", STATE.lives);
           STATE.gameOver = true;
         }
       }
@@ -215,6 +219,7 @@ function updateScoreboard() {
     document.querySelector(".score").textContent = "Score: " + STATE.score;
     document.querySelector(".lives").textContent = "Lives: " + STATE.lives;
     document.querySelector(".ufos").textContent = "UFOs: " + STATE.enemies.length;
+    console.log("Lives remaining:", STATE.lives);
   }
   
 
@@ -273,6 +278,7 @@ function update(){
     updateEnemies($container);
     updateLaser($container);
     updateEnemyLaser($container);
+    updateScoreboard();
   
     if (STATE.paused) {
       return;
@@ -292,7 +298,7 @@ function update(){
       return;
     } 
   
-    updateScoreboard();
+    
     checkGameOver();
     updateTimer(); 
     window.requestAnimationFrame(update);
