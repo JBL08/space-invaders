@@ -1,6 +1,6 @@
 # Space Invaders
 
-## Welcome to our Space Invaders game, made as part of the 01 Founders course! This classic arcade-style game features a pause menu, lives counter, score counter, and immersive sound effects. Get ready to defend Earth from invading UFOs by shooting them down while dodging their laser attacks.
+Welcome to our Space Invaders game, made as part of the 01 Founders course! This classic arcade-style game features a pause menu, lives counter, score counter, and immersive sound effects. Get ready to defend Earth from invading UFOs by shooting them down while dodging their laser attacks.
 
 ## How to Play:
 Use the left and right arrow keys to move your spaceship horizontally across the screen. Press the spacebar to shoot bullets and eliminate the approaching UFOs. 
