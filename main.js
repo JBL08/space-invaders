@@ -19,10 +19,10 @@ const STATE = {
   spaceship_width: 50,
   enemy_width: 50,
   cooldown : 0,
-  number_of_enemies: 16,
+  number_of_enemies: 14,
   enemy_cooldown : 0,
   gameOver: false,
-  lives: 3, //added lives, score and paused
+  lives: 5, //added lives, score and paused
   score: 0,
   paused: false,
   continue: false
@@ -256,7 +256,7 @@ function KeyRelease(event) {
 
 
 //countdown timer
-const TIMER_DURATION = 60;
+const TIMER_DURATION = 90;
 let timer = TIMER_DURATION; 
 
 function updateTimer() {
@@ -306,9 +306,9 @@ function update(){
   
 
 function createEnemies($container) {
-  for(var i = 0; i <= STATE.number_of_enemies/2; i++){
+  for(var i = 0; i < STATE.number_of_enemies/2; i++){
     createEnemy($container, i*80, 100);
-  } for(var i = 0; i <= STATE.number_of_enemies/2; i++){
+  } for(var i = 0; i < STATE.number_of_enemies/2; i++){
     createEnemy($container, i*80, 180);
   }
 }
@@ -328,7 +328,7 @@ function checkGameOver() {
         
         document.querySelector('.continue-btn').addEventListener('click', function() {
             // Resetting the game state
-            STATE.lives = 3;
+            STATE.lives = 5;
             STATE.score = 0;
             STATE.gameOver = false;
             createPlayer($container);
